@@ -99,6 +99,19 @@ class Renderer {
     // framebuffer:  canvas ctx image data
     drawLine(pt0, pt1, color, framebuffer)
     {
-        // code from class here
+        if (Math.abs(y1-y0) <= Math.abs(x1 - x0)) { // |m| <=1
+		if (x0 < x1) {
+			drawLineLow(x0, y0, x1, y1, color, framebuffer);
+		}
+		else {
+			drawLineLow(x1, y1, x0, y0, color, framebuffer);
+		}
+	} else {
+		if (y0 < y1) {
+			drawLineHigh(x0, y0, x1, y1, color, framebuffer);
+		} else {
+			drawLineHigh(x1, y1, x0, y0, color, framebuffer);
+		}
+	}
     }
 };
