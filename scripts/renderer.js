@@ -60,8 +60,8 @@ class Renderer
 
     // framebuffer:  canvas ctx image data
     drawSlide1(framebuffer) {
-		var center = ({x: 300, y: 300});
-		var radius = 50;
+		var center = ({x: 400, y: 300});
+		var radius = 100;
 		var color = [0, 0, 0, 255];
 		this.drawCircle(center, radius, color, framebuffer);
     }
@@ -78,7 +78,30 @@ class Renderer
 
     // framebuffer:  canvas ctx image data
     drawSlide3(framebuffer) {
-		// plot out name
+		var point1 = ({x:100, y: 200}); // top of line in D
+		var point2 = ({x:100, y: 500}); // bottom of line in D
+		var point3 = ({x: 200, y: 350}); // midpoint of curve in D
+		var point4 = ({x: 225, y: 200}); // center of 1st circle
+		var point5 = ({x: 450, y: 500}); // top point of C curve
+		var point6 = ({x: 450, y: 200}); // bottom point of C curve
+		var point7 = ({x: 475, y: 200}); // center of 2nd circle
+		var point8 = ({x: 650, y: 500}); // top point of S curve
+		var point9 = ({x: 550, y: 200}); // bottom point of S curve
+		var point10 = ({x: 725, y: 200}); // 3rd circle
+		var d_pt1 = ({x: 250, y: 500});
+		var d_pt2 = ({x: 250, y: 200});
+		var c_pt1 = ({x: 350, y: 500});
+		var c_pt2 = ({x: 300, y: 200});
+		var s_pt1 = ({x: 450, y: 400});
+		var s_pt2 = ({x: 900, y: 300});
+		var color = [0, 0, 0, 255];
+		this.drawLine(point1, point2, color, framebuffer); // line of D
+		this.drawBezierCurve(point1, d_pt2, d_pt1, point2, color, framebuffer); // curve of D
+		this.drawCircle(point4, 8, color, framebuffer); // first period
+		this.drawBezierCurve(point5, c_pt1, c_pt2, point6, color, framebuffer);
+		this.drawCircle(point7, 8, color, framebuffer); // second period
+		this.drawBezierCurve(point8, s_pt1, s_pt2, point9, color, framebuffer);
+		this.drawCircle(point10, 8, color, framebuffer); // third period
     }
 
     // left_bottom:  object ({x: __, y: __})
@@ -301,12 +324,6 @@ class Renderer
 			}
 		}	
 	}		
-		
-		
-		
-
-
-
 	
 	drawLineLow(x0, y0, x1, y1, color, framebuffer)
 	{
@@ -361,8 +378,6 @@ class Renderer
 			
 		}
 	}
-		
-	
 
 	pixelIndex(x, y, framebuffer)
 	{
@@ -396,4 +411,3 @@ class Renderer
 	}
 
 };
-	
